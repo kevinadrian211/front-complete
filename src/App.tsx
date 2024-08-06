@@ -3,7 +3,6 @@ import './App.css';
 import TimePicker from './components/TimePicker';
 import TurnOnButton from './components/TurnOnButton';
 import TurnOffButton from './components/TurnOffButton';
-import IntensitySlider from './components/IntensitySlider';
 import AcceptButton from './components/AcceptButton';
 import axios from 'axios';
 
@@ -101,24 +100,13 @@ const App: React.FC = () => {
       console.error('Invalid time format', error);
     }
   };
-  
 
-  const handleIntensityChange = (value: number) => {
-    setIntensity(value);
-    axios.put(`${API_URL}/intensity`, { intensity: value })
-      .then(response => {
-        console.log('Intensidad actualizada', response.data);
-      })
-      .catch(error => {
-        console.error('Error al actualizar la intensidad', error);
-      });
-  };
-  
+  // Nota: `handleIntensityChange` ya no se usa y puede eliminarse si no se necesita más
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Control de Intensidad</h1>
+        <h1>Control de Iluminación</h1>
         <div className="button-group">
           <TurnOnButton onTurnOn={handleTurnOn} />
           <TurnOffButton onTurnOff={handleTurnOff} />
@@ -134,7 +122,7 @@ const App: React.FC = () => {
             <AcceptButton onAccept={handleAccept} />
           </div>
         )}
-        {!isOn && <IntensitySlider value={intensity} onChange={handleIntensityChange} />}
+        {/* El componente IntensitySlider ha sido eliminado */}
       </header>
     </div>
   );
